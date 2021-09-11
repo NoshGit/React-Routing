@@ -9,7 +9,9 @@ function Nav() {
     return (
     <>
         <nav>
+        <Link style={navstyle} to="/">
           <h2>Logo</h2>
+        </Link>
           <ul>
             <Link style={navstyle} to="/about">
                 <li>About</li>

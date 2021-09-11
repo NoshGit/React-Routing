@@ -5,6 +5,7 @@ import Profile from './Components/Profile';
 import Nav from './Components/Nav';
 import Home from './Components/Home';
 import User from './Components/User';
+import ErrorComponent from './Components/ErrorComponent';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/profile/:id" component={User} />
+          <Route component={ErrorComponent} />
         </Switch>
       </div>
     </div>
