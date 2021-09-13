@@ -4,6 +4,7 @@ import axios from 'axios';
 function User(props) {
     const [user, setUser] = useState({});
     useEffect(()=>{
+        console.log('$$$', props.match)
         fetchUser();
     },[])
 

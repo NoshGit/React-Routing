@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-function Profile() {
+function Profile(props) {
+    const {match} = props;
     const [users, setUsers] = useState([]);
     useEffect(()=>{
+        console.log(">>", match);
         fetchUsers();
         return(()=>{
             console.log("Profile Component Unmounted");
@@ -29,7 +31,7 @@ function Profile() {
                 {
                     users.map( user => (                        
                         <li key={user.id}>
-                            <Link to={`/profile/${user.id}`} style={{textDecoration:'none'}}>
+                            <Link to={`${match.path}/${user.id}`} style={{textDecoration:'none'}}>
                                 {user.first_name} {user.last_name}
                             </Link>
                         </li>                        
