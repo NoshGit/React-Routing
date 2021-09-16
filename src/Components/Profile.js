@@ -1,28 +1,42 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Pagination from './Shared/Pagination';
 
 function Profile(props) {
     const {match} = props;
+    const [page, setPage] = useState(1);
     const [users, setUsers] = useState([]);
+    const [itemsPerPage, setItemsPerPage] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    //Only For Initial Load
     useEffect(()=>{
         console.log(">>", match);
-        fetchUsers();
         return(()=>{
             console.log("Profile Component Unmounted");
         })
     },[])
 
+    useEffect(()=>{
+        fetchUsers();
+    },[page])
+
     let fetchUsers = () => {
-        //console.log("fetch User Initiated");
-        //const data = await fetch('https://reqres.in/api/users?page=1');
-        axios.get('https://reqres.in/api/users?page=2')
+        
+        axios.get(`https://reqres.in/api/users?page=${page}`)
         .then(res => {
             console.log(res.data.data);
             setUsers(res.data.data);
+            setItemsPerPage(res.data.per_page);
+            setTotal(res.data.total);
         })
         .catch(err => console.error(err))
         
+    }
+
+    const onPaginationClick = number => {
+        setPage(number);
     }
     return (
         <div>
@@ -38,8 +52,12 @@ function Profile(props) {
                     ))
                 }
             </ul>
+
+            <Pagination {...props} currentPage={page} itemsPerPage={itemsPerPage} total={total} numberClicked={onPaginationClick}  />
+
+            
         </div>
     )
 }
 
-export default Profile
+export default Profile 

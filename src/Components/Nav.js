@@ -13,7 +13,7 @@ function Nav() {
         </Link>
           <ul>
             <NavLink style={navstyle} className="links" activeClassName="active-link" to="/about">
-                <li>About</li>
+                <li>About App</li>
             </NavLink>
             <NavLink style={navstyle} className="links" activeClassName="active-link" to="/profile">
                 <li>Profile</li>

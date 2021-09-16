@@ -1,0 +1,12 @@
+.about-page-content{
+    margin: 20px 0;
+}
+
+ol{
+    list-style: inside;
+    list-style-type: decimal;
+    width: auto;
+    margin: 10px auto;
+    text-align: left;
+    max-width: 450px;
+}

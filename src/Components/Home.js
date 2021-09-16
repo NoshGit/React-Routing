@@ -2,8 +2,8 @@ import React from 'react'
 
 function Home() {
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className="home-page-container">
+            <img style={{width:'70vw', height:'auto'}} src={`assets/welcome.jpg`} alt="404 Not Found" />
         </div>
     )
 }
