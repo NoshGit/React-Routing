@@ -3,13 +3,15 @@ import './App.css';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Nav from './Components/Nav';
-import Home from './Components/Home';
+import Spinner from './Components/Shared/Spinner';
+
 /*import About from './Components/About';
 import Profile from './Components/Profile';
 import User from './Components/User';
 import ErrorComponent from './Components/ErrorComponent';
 import Dashboard from './Components/Dashboard';*/
 
+const lazyHome = lazy( () => import('./Components/Home'));
 const lazyAbout = lazy(()=> import('./Components/About'));
 const lazyProfile = lazy(()=> import('./Components/Profile'));
 const lazyUser = lazy(()=> import('./Components/User'));
@@ -25,9 +27,9 @@ function App() {
         <Nav />
       </header>
       <div className="content">
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<Spinner/>}>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={lazyHome} />
           {/*<Route path="/about" component={About} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/profile/:id" component={User} />

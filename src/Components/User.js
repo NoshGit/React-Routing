@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 function User(props) {
     const [user, setUser] = useState({});
+    const history = useHistory();
     useEffect(()=>{
         console.log('$$$', props.match)
         fetchUser();
@@ -20,11 +22,16 @@ function User(props) {
         
     }
     return (
+        <>
         <div>
             <h1>{user.first_name} {user.last_name}</h1>
             
             <img src={user.avatar} />
         </div>
+        <div>
+            <button className="back-btn" onClick={history.goBack}>Back</button>
+        </div>
+        </>
     )
 }
 
