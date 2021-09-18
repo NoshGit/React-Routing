@@ -2,17 +2,21 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Pagination from './Shared/Pagination';
+import queryString from 'query-string'
+
 
 function Profile(props) {
     const {match} = props;
-    const [page, setPage] = useState(1);
+    const params = queryString.parse(props.location.search);
+    const p = Number(params.p) || 1;
+    const [page, setPage] = useState(p);
     const [users, setUsers] = useState([]);
     const [itemsPerPage, setItemsPerPage] = useState(0);
     const [total, setTotal] = useState(0);
 
     //Only For Initial Load
     useEffect(()=>{
-        console.log(">>", match);
+        console.log(">>", props);
         return(()=>{
             console.log("Profile Component Unmounted");
         })
@@ -30,13 +34,17 @@ function Profile(props) {
             setUsers(res.data.data);
             setItemsPerPage(res.data.per_page);
             setTotal(res.data.total);
+
+
         })
         .catch(err => console.error(err))
         
     }
+    
 
     const onPaginationClick = number => {
         setPage(number);
+        props.history.push(`${match.path}?p=${number}`);
     }
     return (
         <div>

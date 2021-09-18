@@ -15,6 +15,7 @@ function About() {
                     <li>Lazy Loading</li>
                     <li>Active Link Display Using Nav Link</li>
                     <li>Displaying Dynamic Component Based on Route Params</li>
+                    <li>Retaining Page state based on Route query Params</li>
                 </ol>
             </p>
         </div>
