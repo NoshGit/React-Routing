@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import './pagination.css'
 
 function Pagination(props) {
-    const {currentPage, itemsPerPage, total, numberClicked} = props;
+    const {currentPage, itemsPerPage, total, numberClicked, match} = props;
 
     useEffect(()=>{
-        console.log(`currentPage=${currentPage}, itemsPerPage=${itemsPerPage}, total=${total}`, props.match);
+        console.log(`currentPage=${currentPage}, itemsPerPage=${itemsPerPage}, total=${total}`, match);
     },[currentPage, itemsPerPage, total])
 
     const handleClick = (e) => {

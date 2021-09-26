@@ -5,7 +5,7 @@ function About() {
     return (
         <div>
             <h1>About Application</h1>
-            <p className="about-page-content">
+            <div className="about-page-content">
                 This Application is a POC for handling Varius Scenarios of React Routing.
 
                 What is Handled?
@@ -17,7 +17,7 @@ function About() {
                     <li>Displaying Dynamic Component Based on Route Params</li>
                     <li>Retaining Page state based on Route query Params</li>
                 </ol>
-            </p>
+            </div>
         </div>
     )
 }

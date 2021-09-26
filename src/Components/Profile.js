@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useState, useEffect, useRef} from 'react';
+import $http from 'axios';
 import {Link} from 'react-router-dom';
 import Pagination from './Shared/Pagination';
 import queryString from 'query-string'
@@ -14,21 +14,15 @@ function Profile(props) {
     const [itemsPerPage, setItemsPerPage] = useState(0);
     const [total, setTotal] = useState(0);
 
-    //Only For Initial Load
-    useEffect(()=>{
-        console.log(">>", props);
-        return(()=>{
-            console.log("Profile Component Unmounted");
-        })
-    },[])
+    const fetchUsers = useRef( () => {});
 
     useEffect(()=>{
-        fetchUsers();
-    },[page])
+        fetchUsers.current();
+    },[page]);
 
-    let fetchUsers = () => {
+    fetchUsers.current = () => {
         
-        axios.get(`https://reqres.in/api/users?page=${page}`)
+        $http.get(`https://reqres.in/api/users?page=${page}`)
         .then(res => {
             console.log(res.data.data);
             setUsers(res.data.data);
